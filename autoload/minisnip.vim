@@ -225,7 +225,6 @@ function! minisnip#complete() abort
             \ 'word': l:m[0],
             \ 'abbr': l:m[0],
             \ 'menu': l:m[1][0],
-            \ 'info': join(l:m[1], "\n"),
         \ })
     endfor
 
