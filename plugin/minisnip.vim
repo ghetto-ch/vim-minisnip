@@ -45,8 +45,12 @@ if !hasmapto('<Plug>(minisnip)', 's') && mapcheck(g:minisnip_trigger, 's') ==# '
 endif
 
 " Completion
-if !hasmapto('<Plug>(minisnip-complete)', 'i')
-    imap <C-x><C-t> <Plug>(minisnip-complete)
-    inoremap <expr> <C-t> pumvisible() ?  "\<C-n>" : "\<C-t>"
-    imap <expr> <C-y> pumvisible() ? "\<Tab>" : "\<C-y>"
+
+if &completefunc is# ''
+    set completefunc=minisnip#complete
 endif
+
+augroup minisnip
+    au!
+    autocmd CompleteDone * call minisnip#done(v:completed_item)
+augroup END
